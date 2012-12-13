@@ -63,3 +63,11 @@ export PATH="$PATH:$HOME/local/bin"
 
 # rm -> trash
 alias rm=trash-put
+
+#
+# git
+#
+alias gs="git status"
+alias gl="git log"
+alias gb="git branch -a"
+alias gi="git commit"
