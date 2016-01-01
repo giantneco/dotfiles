@@ -63,13 +63,10 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # rm -> trash
 alias rm=trash-put
-alias gl="git ls"
-
 
 #
 # Ruby 用の環境設定
 #
-
 export RBENV_ROOT="${HOME}/.local/opt/rbenv"
 export PATH=${RBENV_ROOT}/bin:${PATH}
 export PATH=${RBENV_ROOT}/shims:${PATH}
@@ -115,6 +112,12 @@ export PATH="${HOME}/.local/opt/scala/bin:${PATH}"
 # R
 #
 export R_LIBS_USER=~/.local/lib/R
-
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HOME}/.local/lib
 
+#
+# git
+#
+alias gs="git status"
+alias gl="git log"
+alias gb="git branch -a"
+alias gi="git commit"
