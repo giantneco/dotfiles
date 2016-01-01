@@ -59,7 +59,62 @@ alias -g ...=../../
 alias -g ....=../../../
 alias -g .....=../../../../
 
-export PATH="$PATH:$HOME/local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # rm -> trash
 alias rm=trash-put
+alias gl="git ls"
+
+
+#
+# Ruby 用の環境設定
+#
+
+export RBENV_ROOT="${HOME}/.local/opt/rbenv"
+export PATH=${RBENV_ROOT}/bin:${PATH}
+export PATH=${RBENV_ROOT}/shims:${PATH}
+# Load rbenv automatically by adding
+# the following to ~/.bash_profile:
+
+eval "$(rbenv init - zsh)"
+
+
+#
+# cabal
+
+export PATH=~/.cabal/bin:${PATH}
+
+#
+# pyenv
+#
+export PATH=${HOME}/.pyenv/bin:$PATH
+eval "$(pyenv init -)"
+
+
+#
+# nvm
+#
+source ~/.nvm/nvm.sh
+# ndenv
+export PATH="$HOME/.ndenv/bin:$PATH"
+
+#
+# JAVA
+#
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+
+export PATH=$PATH:${HOME}/.local/opt/apache-maven/bin
+
+#
+# Scala
+#
+export PATH="${HOME}/.local/opt/scala/bin:${PATH}"
+
+#
+# R
+#
+export R_LIBS_USER=~/.local/lib/R
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HOME}/.local/lib
+
