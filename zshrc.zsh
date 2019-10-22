@@ -60,6 +60,7 @@ alias -g ....=../../../
 alias -g .....=../../../../
 
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/local/bin"
 
 # rm -> trash
 alias rm=trash-put
@@ -70,11 +71,9 @@ alias rm=trash-put
 export RBENV_ROOT="${HOME}/.local/opt/rbenv"
 export PATH=${RBENV_ROOT}/bin:${PATH}
 export PATH=${RBENV_ROOT}/shims:${PATH}
-# Load rbenv automatically by adding
-# the following to ~/.bash_profile:
-
-eval "$(rbenv init - zsh)"
-
+if [ -x ${RBENV_ROOT}/bin/rbenv ]; then
+  eval "$(rbenv init - zsh)"
+fi
 
 #
 # cabal
@@ -85,22 +84,24 @@ export PATH=~/.cabal/bin:${PATH}
 # pyenv
 #
 export PATH=${HOME}/.pyenv/bin:$PATH
-eval "$(pyenv init -)"
-
+if [ -x ${HOME}/.pyenv/bin/pyenv ]; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 #
 # nvm
 #
-source ~/.nvm/nvm.sh
-# ndenv
-export PATH="$HOME/.ndenv/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+if [ -e ${NVM_DIR}/nvm.sh ]; then
+  source ${NVM_DIR}/nvm.sh
+fi
+if [ -e "$NVM_DIR/bash_completion" ]; then
+  source "$NVM_DIR/bash_completion"
+fi
 
-#
 # JAVA
 #
-
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
-
 export PATH=$PATH:${HOME}/.local/opt/apache-maven/bin
 
 #
@@ -121,3 +122,59 @@ alias gs="git status"
 alias gl="git log"
 alias gb="git branch -a"
 alias gi="git commit"
+
+#
+# golang
+#
+export PATH="/usr/lib/go-1.6/bin":$PATH
+
+#
+# Android Studio
+#
+export ANDROID_HOME=~/local/opt/android/Sdk
+export PATH=$ANDROID_HOME/tools/bin:$PATH
+export PATH=$ANDROID_HOME/emulator:$PATH
+export PATH=$ANDROID_HOME/platform-tools/:$PATH
+
+
+#
+# opam
+#
+eval `opam config env`
+
+. /home/shingo-s/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+#
+# Google Cloud SDK
+#
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/shingo-s/work/kubectl-setting/google-cloud-sdk/path.zsh.inc' ]; then source '/home/shingo-s/work/kubectl-setting/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/shingo-s/work/kubectl-setting/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/shingo-s/work/kubectl-setting/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+#
+# flutter
+#
+export PATH=$PATH:~/local/opt/flutter/bin
+
+# sdkman settings
+export SDKMAN_DIR="$HOME/.sdkman"
+
+#
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+#
+# Roswell
+#
+export PATH=$PATH:$HOME/.roswell/bin
+
+
+#
+# poac
+#
+export PATH="$HOME/.poac/bin:$PATH"
